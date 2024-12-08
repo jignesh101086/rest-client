@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electron REST Client</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #2b2b2b;
+            color: #e0e0e0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #ffa726;
+        }
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px auto;
+            height: calc(100vh - 50px);
+        }
+        .sidebar {
+            background-color: #1e1e1e;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .content {
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select, button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        input, textarea, select {
+            background-color: #333;
+            color: #fff;
+        }
+        button {
+            background-color: #ffa726;
+            color: #000;
+            cursor: pointer;
+        }
+        .response {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Electron REST Client</h1>
+    </header>
+    <div class="main-container">
+        <div class="sidebar">
+            <!-- Sidebar for request history or saved requests -->
+            <h2>History</h2>
+        </div>
+        <div class="content">
+            <form id="request-form">
+                <div class="input-group">
+                    <label for="method">Method</label>
+                    <select id="method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="url">URL</label>
+                    <input id="url" type="text" placeholder="Enter URL" required />
+                </div>
+                <div class="input-group">
+                    <label for="headers">Headers (JSON format)</label>
+                    <textarea id="headers" placeholder="e.g., {\"Content-Type\": \"application/json\"}"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="body">Body (JSON format)</label>
+                    <textarea id="body" placeholder="e.g., {\"key\": \"value\"}"></textarea>
+                </div>
+                <button type="submit">Send Request</button>
+            </form>
+            <div class="response">
+                <h2>Response</h2>
+                <pre id="response-output"></pre>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
